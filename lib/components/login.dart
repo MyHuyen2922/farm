@@ -84,10 +84,7 @@ class _LoginState extends State<Login> {
                                 });
                                 FocusScope.of(context).unfocus();
                               },
-                              child: Icon(
-                                Icons.visibility,
-                                color: Colors.black,
-                              ),
+                              child:    Icon(Icons.visibility),
                             ),
                             hintStyle: TextStyle(color: Colors.black),
                             border: OutlineInputBorder()),

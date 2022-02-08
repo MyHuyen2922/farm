@@ -1,4 +1,5 @@
 import 'package:farm/components/call_API.dart';
+import 'package:farm/components/customdata.dart';
 import 'package:farm/components/login.dart';
 import 'package:farm/components/seatek.dart';
 import 'package:farm/components/signup.dart';
@@ -19,8 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Seatek(),
+      home: Login(),
     );
   }
 }
-

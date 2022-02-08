@@ -67,6 +67,7 @@ class _SeatekState extends State<Seatek> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
+          //height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage(
