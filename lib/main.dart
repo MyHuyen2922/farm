@@ -1,6 +1,7 @@
 import 'package:farm/components/call_API.dart';
 import 'package:farm/components/customdata.dart';
 import 'package:farm/components/login.dart';
+import 'package:farm/components/navdrawer.dart';
 import 'package:farm/components/seatek.dart';
 import 'package:farm/components/signup.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: SignUp(),
     );
   }
 }

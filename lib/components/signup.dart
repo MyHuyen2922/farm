@@ -16,6 +16,7 @@ RegExp regExp = new RegExp(p);
 bool obserText = true;
 
 class _SignUpState extends State<SignUp> {
+
   String onchangeval = "";
   void vaildation() {
     final FormState? _form = _formkey.currentState;
@@ -25,6 +26,11 @@ class _SignUpState extends State<SignUp> {
       print("No");
     }
   }
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +68,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       TextFormField(
+                        controller: _nameController,
                         validator: (value) {
                           if (value!.length < 6) {
                             return "short";
@@ -75,11 +82,7 @@ class _SignUpState extends State<SignUp> {
                             border: OutlineInputBorder()),
                       ),
                       TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            onchangeval = value;
-                          });
-                        },
+                        controller: _emailController,
                         validator: (value) {
                           if (value == "") {
                             return "null";
@@ -93,6 +96,7 @@ class _SignUpState extends State<SignUp> {
                             border: OutlineInputBorder()),
                       ),
                       TextFormField(
+                        controller: _phoneController,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
                         ],
@@ -103,6 +107,7 @@ class _SignUpState extends State<SignUp> {
                             border: OutlineInputBorder()),
                       ),
                       TextFormField(
+                        controller: _passwordController,
                         obscureText: obserText,
                         decoration: InputDecoration(
                             hintText: "Password",

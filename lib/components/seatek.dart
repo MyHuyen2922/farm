@@ -13,7 +13,7 @@ class _SeatekState extends State<Seatek> {
   Future getUserData() async {
     //var response = await http
     http.post(
-        Uri.parse('http://f609-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
@@ -29,7 +29,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOff() async {
     http.post(
-        Uri.parse('http://f609-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
@@ -40,7 +40,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOnFan() async {
     http.post(
-        Uri.parse('http://f609-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -51,7 +51,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOffFan() async {
     http.post(
-        Uri.parse('http://f609-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -81,13 +81,6 @@ class _SeatekState extends State<Seatek> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Khu vườn Seatek",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.purple),
-                    ),
                     Image.asset(
                       "assets/images/bom-hoa-chat-mini-2-removebg-preview.png",
                       width: 240,

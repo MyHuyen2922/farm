@@ -74,6 +74,9 @@ class _LoginState extends State<Login> {
                             border: OutlineInputBorder()),
                       ),
                       TextFormField(
+                        onChanged: (text){
+                          print("$text");
+                        },
                         obscureText: obserText,
                         decoration: InputDecoration(
                             hintText: "Password",
