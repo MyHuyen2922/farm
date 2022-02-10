@@ -5,9 +5,11 @@ class AuthenticationServices {
 
   Future createNewUser(String email, String password) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      FirebaseUser user = result.user;
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = result.user;
       return user;
     } catch (e) {
       print(e.toString());

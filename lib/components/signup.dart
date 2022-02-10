@@ -1,3 +1,4 @@
+import 'package:farm/Services/AuthenticationService.dart';
 import 'package:farm/components/login.dart';
 import 'package:farm/widgets/changescreen.dart';
 import 'package:farm/widgets/mybutton.dart';
@@ -16,7 +17,6 @@ RegExp regExp = new RegExp(p);
 bool obserText = true;
 
 class _SignUpState extends State<SignUp> {
-
   String onchangeval = "";
   void vaildation() {
     final FormState? _form = _formkey.currentState;
@@ -26,6 +26,10 @@ class _SignUpState extends State<SignUp> {
       print("No");
     }
   }
+
+  final _key = GlobalKey<FormState>();
+
+  final AuthenticationServices _auth = AuthenticationServices();
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -126,11 +130,19 @@ class _SignUpState extends State<SignUp> {
                             hintStyle: TextStyle(color: Colors.black),
                             border: OutlineInputBorder()),
                       ),
-                      MyButton(
+                      /*MyButton(
                           text: "SignUp",
                           press: () {
-                            vaildation();
-                          }),
+                            //vaildation();
+                            if (_key.currentState!.validate()) {
+                              createUser();
+                            }
+                          }),*/
+                      FlatButton(
+                          onPressed: () {
+                              createUser();
+                          },
+                          child: Text("Sing up")),
                       ChangeScreen(
                           name: "Login",
                           onTap: () {
@@ -150,5 +162,15 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  void createUser() async {
+    dynamic result = await _auth.createNewUser(
+        _emailController.text, _passwordController.text);
+    if (result == null) {
+      print('Email is not valid');
+    } else {
+      print(result.toString());
+    }
   }
 }
