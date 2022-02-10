@@ -74,7 +74,7 @@ class _LoginState extends State<Login> {
                             border: OutlineInputBorder()),
                       ),
                       TextFormField(
-                        onChanged: (text){
+                        onChanged: (text) {
                           print("$text");
                         },
                         obscureText: obserText,
@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
                                 });
                                 FocusScope.of(context).unfocus();
                               },
-                              child:    Icon(Icons.visibility),
+                              child: Icon(Icons.visibility),
                             ),
                             hintStyle: TextStyle(color: Colors.black),
                             border: OutlineInputBorder()),

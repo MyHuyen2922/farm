@@ -138,11 +138,11 @@ class _SignUpState extends State<SignUp> {
                               createUser();
                             }
                           }),*/
-                      FlatButton(
-                          onPressed: () {
-                              createUser();
+                      MyButton(
+                          press: () {
+                            createUser();
                           },
-                          child: Text("Sing up")),
+                          text: "Sign up"),
                       ChangeScreen(
                           name: "Login",
                           onTap: () {
@@ -168,9 +168,45 @@ class _SignUpState extends State<SignUp> {
     dynamic result = await _auth.createNewUser(
         _emailController.text, _passwordController.text);
     if (result == null) {
-      print('Email is not valid');
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Message"),
+              content: Text("Chưa đủ thông tin. Vui lòng thử lại !"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => SignUp(),
+                        ),
+                      );
+                    },
+                    child: Text("Ok"))
+              ],
+            );
+          });
     } else {
-      print(result.toString());
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Message"),
+              content: Text("Đăng ký thành công"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => Login(),
+                        ),
+                      );
+                    },
+                    child: Text("Ok"))
+              ],
+            );
+          });
     }
   }
 }
