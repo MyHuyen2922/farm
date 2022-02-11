@@ -1,5 +1,6 @@
 import 'package:farm/Services/AuthenticationService.dart';
 import 'package:farm/components/login.dart';
+import 'package:farm/components/navdrawer.dart';
 import 'package:farm/widgets/changescreen.dart';
 import 'package:farm/widgets/mybutton.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
-final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
@@ -26,8 +27,6 @@ class _SignUpState extends State<SignUp> {
       print("No");
     }
   }
-
-  final _key = GlobalKey<FormState>();
 
   final AuthenticationServices _auth = AuthenticationServices();
 
@@ -177,7 +176,7 @@ class _SignUpState extends State<SignUp> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pop(
                         MaterialPageRoute(
                           builder: (ctx) => SignUp(),
                         ),
@@ -188,6 +187,10 @@ class _SignUpState extends State<SignUp> {
             );
           });
     } else {
+      _nameController.clear();
+      _emailController.clear();
+      _phoneController.clear();
+      _passwordController.clear();
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -199,7 +202,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (ctx) => Login(),
+                          builder: (ctx) => NavDrawer(),
                         ),
                       );
                     },

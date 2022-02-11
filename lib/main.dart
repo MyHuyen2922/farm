@@ -10,10 +10,14 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(MaterialApp(initialRoute: '/login', routes: {
+    '/login': (context) => Login(),
+    '/signup': (context) => SignUp(),
+    '/navdrawer': (context) => NavDrawer(),
+  }));
 }
 
-class MyApp extends StatelessWidget {
+/*class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -27,4 +31,4 @@ class MyApp extends StatelessWidget {
       home: SignUp(),
     );
   }
-}
+}*/
