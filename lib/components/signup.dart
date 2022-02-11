@@ -165,7 +165,11 @@ class _SignUpState extends State<SignUp> {
 
   void createUser() async {
     dynamic result = await _auth.createNewUser(
-        _emailController.text, _passwordController.text);
+      _emailController.text,
+      _passwordController.text,
+      _nameController.text,
+      _phoneController.text,
+    );
     if (result == null) {
       showDialog(
           context: context,
