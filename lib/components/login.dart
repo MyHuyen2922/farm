@@ -87,11 +87,7 @@ class _LoginState extends State<Login> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => NavDrawer(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/navdrawer');
                     },
                     child: Text("Ok"))
               ],
@@ -176,7 +172,7 @@ class _LoginState extends State<Login> {
                             vaildation();
                           }),
                       ChangeScreen(
-                          name: "SignUp",
+                          name: "Sign Up",
                           onTap: () {
                             Navigator.of(context).push(
                               CupertinoPageRoute(

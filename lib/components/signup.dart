@@ -22,7 +22,7 @@ class _SignUpState extends State<SignUp> {
   void vaildation() {
     final FormState? _form = _formkey.currentState;
     if (_form!.validate()) {
-      print(onchangeval);
+      createUser();
     } else {
       print("No");
     }
@@ -139,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                           }),*/
                       MyButton(
                           press: () {
-                            createUser();
+                            vaildation();
                           },
                           text: "Sign up"),
                       ChangeScreen(

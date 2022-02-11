@@ -1,11 +1,19 @@
+import 'package:farm/Services/AuthenticationService.dart';
 import 'package:farm/components/farm_nt.dart';
 import 'package:farm/components/farn_ct.dart';
 import 'package:farm/components/seatek.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class NavDrawer extends StatelessWidget {
+class NavDrawer extends StatefulWidget {
+  @override
+  State<NavDrawer> createState() => _NavDrawerState();
+}
+
+class _NavDrawerState extends State<NavDrawer> {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+
+  final AuthenticationServices _auth = AuthenticationServices();
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +21,10 @@ class NavDrawer extends StatelessWidget {
       appBar: AppBar(
         title: Container(
           padding: EdgeInsets.fromLTRB(47, 0, 0, 0),
-            child: Text(
-              "Khu vườn Seatek",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
+          child: Text(
+            "Khu vườn Seatek",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
         ),
         backgroundColor: Colors.redAccent,
       ),
@@ -73,6 +79,15 @@ class NavDrawer extends StatelessWidget {
                     builder: (BuildContext context) => FarmCanTho(),
                   ),
                 );
+              },
+            ),
+            ListTile(
+              title: Text("Đăng xuất"),
+              trailing: Icon(Icons.login_outlined),
+              onTap: () async {
+                await _auth.signOut().then((result) {
+                  Navigator.pushNamed(context, '/login');
+                });
               },
             ),
           ],

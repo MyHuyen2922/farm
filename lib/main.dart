@@ -10,11 +10,14 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(initialRoute: '/login', routes: {
+  runApp(MaterialApp(initialRoute: '/login',
+      debugShowCheckedModeBanner: false,
+      routes: {
     '/login': (context) => Login(),
     '/signup': (context) => SignUp(),
     '/navdrawer': (context) => NavDrawer(),
-  }));
+  }),
+  );
 }
 
 /*class MyApp extends StatelessWidget {

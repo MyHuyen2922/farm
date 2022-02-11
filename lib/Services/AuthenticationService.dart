@@ -27,4 +27,15 @@ class AuthenticationServices {
       print(e.toString());
     }
   }
+
+  //SignOut
+
+Future signOut() async{
+    try{
+      return _auth.signOut();
+    }catch(e){
+      print(e.toString());
+      return null;
+    }
+}
 }
