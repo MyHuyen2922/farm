@@ -11,11 +11,12 @@ class DatabaseManager {
   Future getUserList() async {
     List itemsList = [];
     try {
-      await profileList.get().then(((QuerySnapshot) {
-        QuerySnapshot.docs.forEach((element) {
+      await profileList.get().then(((querySnapshot) {
+        querySnapshot.docs.forEach((element) {
           itemsList.add(element.data);
         });
       }));
+      return itemsList;
     } catch (e) {
       print(e.toString());
       return null;

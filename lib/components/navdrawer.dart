@@ -1,6 +1,9 @@
 import 'package:farm/Services/AuthenticationService.dart';
+import 'package:farm/components/call_API.dart';
+import 'package:farm/components/call_API_local.dart';
 import 'package:farm/components/farm_nt.dart';
 import 'package:farm/components/farn_ct.dart';
+import 'package:farm/components/infoPLC.dart';
 import 'package:farm/components/seatek.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,19 +17,46 @@ class _NavDrawerState extends State<NavDrawer> {
   final padding = EdgeInsets.symmetric(horizontal: 20);
 
   final AuthenticationServices _auth = AuthenticationServices();
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  List<Widget> _widgetOptions = <Widget>[
+    InfoPLC(),
+    Seatek(),
+
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          padding: EdgeInsets.fromLTRB(47, 0, 0, 0),
-          child: Text(
-            "Khu vườn Seatek",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        title: const Text('Khu Vườn Seatek'),
+        backgroundColor: Colors.indigo[300],
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-        ),
-        backgroundColor: Colors.redAccent,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.aod_outlined),
+            label: 'Control',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.indigo[300],
       ),
       drawer: Drawer(
         child: ListView(
@@ -93,7 +123,6 @@ class _NavDrawerState extends State<NavDrawer> {
           ],
         ),
       ),
-      body: Seatek(),
     );
   }
 }
