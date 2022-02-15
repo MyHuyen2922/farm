@@ -7,6 +7,7 @@ import 'package:farm/components/infoPLC.dart';
 import 'package:farm/components/seatek.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 class NavDrawer extends StatefulWidget {
   @override
@@ -23,7 +24,6 @@ class _NavDrawerState extends State<NavDrawer> {
   List<Widget> _widgetOptions = <Widget>[
     InfoPLC(),
     Seatek(),
-
   ];
 
   void _onItemTapped(int index) {
@@ -58,10 +58,9 @@ class _NavDrawerState extends State<NavDrawer> {
         onTap: _onItemTapped,
         backgroundColor: Colors.indigo[300],
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            Container(
+      drawer: MultiLevelDrawer(
+          header: Container(
+            child: Center(
               child: UserAccountsDrawerHeader(
                 currentAccountPicture: GestureDetector(
                   child: CircleAvatar(
@@ -89,40 +88,33 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
               ),
             ),
-            ListTile(
-              title: Text("Bảo Gia Ninh Thuận"),
-              trailing: Icon(Icons.home),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => FarmNinhThuan(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: Text("Bảo Gia Cần Thơ"),
-              trailing: Icon(Icons.home),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => FarmCanTho(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: Text("Đăng xuất"),
-              trailing: Icon(Icons.login_outlined),
-              onTap: () async {
-                await _auth.signOut().then((result) {
-                  Navigator.pushNamed(context, '/login');
-                });
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
+          children: [
+            MLMenuItem(
+                trailing: Icon(Icons.arrow_right),
+                onClick: () {},
+                content: Text("Farm Cần Thơ"),
+                subMenuItems: [
+                  MLSubmenu(submenuContent: Text("PLC 1"), onClick: () {}),
+                  MLSubmenu(submenuContent: Text("PLC 2"), onClick: () {}),
+                ]),
+            MLMenuItem(
+                trailing: Icon(Icons.arrow_right),
+                onClick: () {},
+                content: Text("Farm Ninh Thuận"),
+                subMenuItems: [
+                  MLSubmenu(submenuContent: Text("PLC 1"), onClick: () {}),
+                  MLSubmenu(submenuContent: Text("PLC 2"), onClick: () {}),
+                ]),
+            MLMenuItem(
+                trailing: Icon(Icons.logout),
+                content: Text("Đăng xuất"),
+                onClick: () async {
+                  await _auth.signOut().then((result) {
+                    Navigator.pushNamed(context, '/login');
+                  });
+                }),
+          ]),
     );
   }
 }
