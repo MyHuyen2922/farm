@@ -34,7 +34,8 @@ class _InfoPLCState extends State<InfoPLC> {
                           Icon(Icons.circle, color: Colors.green,size: 50,),
                           Icon(Icons.circle, color: Colors.red,size: 50,),
                         ]else...[
-                          Text("A is less than or Equal to 10")
+                          Icon(Icons.circle, color: Colors.lightGreenAccent,size: 50,),
+                          Icon(Icons.circle, color: Colors.redAccent,size: 50,),
                         ]
                       ])
               ),
