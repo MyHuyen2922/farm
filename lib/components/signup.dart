@@ -39,123 +39,125 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Form(
-          key: _formkey,
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 60,
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        "Register",
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formkey,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 60,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          "Register",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 400,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      TextFormField(
-                        controller: _nameController,
-                        validator: (value) {
-                          if (value!.length < 6) {
-                            return "short";
-                          } else if (value == "") {
-                            return "null";
-                          }
-                        },
-                        decoration: InputDecoration(
-                            hintText: "UserName",
-                            hintStyle: TextStyle(color: Colors.black),
-                            border: OutlineInputBorder()),
-                      ),
-                      TextFormField(
-                        controller: _emailController,
-                        validator: (value) {
-                          if (value == "") {
-                            return "null";
-                          } else if (!regExp.hasMatch(value!)) {
-                            return "Email is Invaild";
-                          }
-                        },
-                        decoration: InputDecoration(
-                            hintText: "Email",
-                            hintStyle: TextStyle(color: Colors.black),
-                            border: OutlineInputBorder()),
-                      ),
-                      TextFormField(
-                        controller: _phoneController,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            hintText: "Phone",
-                            hintStyle: TextStyle(color: Colors.black),
-                            border: OutlineInputBorder()),
-                      ),
-                      TextFormField(
-                        controller: _passwordController,
-                        obscureText: obserText,
-                        decoration: InputDecoration(
-                            hintText: "Password",
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  obserText = !obserText;
-                                });
-                                FocusScope.of(context).unfocus();
-                              },
-                              child: Icon(
-                                Icons.visibility,
-                                color: Colors.black,
-                              ),
-                            ),
-                            hintStyle: TextStyle(color: Colors.black),
-                            border: OutlineInputBorder()),
-                      ),
-                      /*MyButton(
-                          text: "SignUp",
-                          press: () {
-                            //vaildation();
-                            if (_key.currentState!.validate()) {
-                              createUser();
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 400,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        TextFormField(
+                          controller: _nameController,
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return "short";
+                            } else if (value == "") {
+                              return "null";
                             }
-                          }),*/
-                      MyButton(
-                          press: () {
-                            vaildation();
                           },
-                          text: "Sign up"),
-                      ChangeScreen(
-                          name: "Login",
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (ctx) => Login(),
+                          decoration: InputDecoration(
+                              hintText: "UserName",
+                              hintStyle: TextStyle(color: Colors.black),
+                              border: OutlineInputBorder()),
+                        ),
+                        TextFormField(
+                          controller: _emailController,
+                          validator: (value) {
+                            if (value == "") {
+                              return "null";
+                            } else if (!regExp.hasMatch(value!)) {
+                              return "Email is Invaild";
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: "Email",
+                              hintStyle: TextStyle(color: Colors.black),
+                              border: OutlineInputBorder()),
+                        ),
+                        TextFormField(
+                          controller: _phoneController,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              hintText: "Phone",
+                              hintStyle: TextStyle(color: Colors.black),
+                              border: OutlineInputBorder()),
+                        ),
+                        TextFormField(
+                          controller: _passwordController,
+                          obscureText: obserText,
+                          decoration: InputDecoration(
+                              hintText: "Password",
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    obserText = !obserText;
+                                  });
+                                  FocusScope.of(context).unfocus();
+                                },
+                                child: Icon(
+                                  Icons.visibility,
+                                  color: Colors.black,
+                                ),
                               ),
-                            );
-                          },
-                          whichAccount: "I have an Account"),
-                    ],
-                  ),
-                )
-              ],
+                              hintStyle: TextStyle(color: Colors.black),
+                              border: OutlineInputBorder()),
+                        ),
+                        /*MyButton(
+                            text: "SignUp",
+                            press: () {
+                              //vaildation();
+                              if (_key.currentState!.validate()) {
+                                createUser();
+                              }
+                            }),*/
+                        MyButton(
+                            press: () {
+                              vaildation();
+                            },
+                            text: "Sign up"),
+                        ChangeScreen(
+                            name: "Login",
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (ctx) => Login(),
+                                ),
+                              );
+                            },
+                            whichAccount: "I have an Account"),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

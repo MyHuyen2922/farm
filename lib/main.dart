@@ -7,6 +7,7 @@ import 'package:farm/components/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:farm/components/getData.dart';
+import 'package:farm/components/call_API_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +17,12 @@ void main() async {
         initialRoute: '/navdrawer',
         debugShowCheckedModeBanner: false,
         routes: {
+          '/call_api_local': (context) => CallAPILocal(),
           '/login': (context) => Login(),
           '/signup': (context) => SignUp(),
           '/navdrawer': (context) => NavDrawer(),
           '/getdata': (context) => GetData(),
+
         }),
   );
 }

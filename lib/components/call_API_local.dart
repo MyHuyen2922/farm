@@ -9,6 +9,11 @@ class CallAPILocal extends StatefulWidget {
   _DataFromAPIState createState() => _DataFromAPIState();
 }
 
+class User {
+  final String? tenmon, gia, mota;
+  User(this.tenmon, this.gia, this.mota);
+}
+
 class _DataFromAPIState extends State<CallAPILocal> {
   Future getUserData() async {
     var response = await http.get(Uri.http('10.0.2.2:80', 'GetItemNative.php'));
@@ -69,9 +74,4 @@ class _DataFromAPIState extends State<CallAPILocal> {
           ),
         ));
   }
-}
-
-class User {
-  final String? tenmon, gia, mota;
-  User(this.tenmon, this.gia, this.mota);
 }

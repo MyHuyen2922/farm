@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:core';
 
 class InfoPLC extends StatefulWidget {
   @override
@@ -7,164 +9,56 @@ class InfoPLC extends StatefulWidget {
 
 class _InfoPLCState extends State<InfoPLC> {
   int number = 0;
+  var data = [
+    {
+      "name": "Can Tho",
+      "location": "location can tho",
+      "child": [
+        {
+          "name": "Bao gia farm",
+          "location": "location bao gia",
+          "child": [
+            {"name": "nha mang 1", "location": "location nha mang 1"},
+            {"name": "nha mang 2", "location": "location nha mang 2"}
+          ]
+        },
+        {
+          "name": "Danny green",
+          "location": "location danny green",
+          "child": [
+            {"name": "nha mang 3", "location": "location nha mang 3"}
+          ]
+        }
+      ]
+    }
+  ];
+  Future getData() async {
+    print(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(10),
-          child: Center(
-              child: Column(
-            children: [
-              Text(
-                "Thông tin PLC",
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold),
-              ),
-              Image(
-                image: AssetImage('assets/images/plc.png'),
-              ),
-              Container(
-                  child:
-                  Row(
-                      children: [
-                        if(number == 0)...[
-                          Icon(Icons.circle, color: Colors.green,size: 50,),
-                          Icon(Icons.circle, color: Colors.red,size: 50,),
-                        ]else...[
-                          Icon(Icons.circle, color: Colors.lightGreenAccent,size: 50,),
-                          Icon(Icons.circle, color: Colors.redAccent,size: 50,),
-                        ]
-                      ])
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Table(
-                  border: TableBorder.all(width: 1, color: Colors.purple),
-                  children: [
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "Tên PLC",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "Tên PLC",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "IP PLC",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "Nhãn hiệu",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "Chức năng",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "Model",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            "a",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )),
+        appBar: AppBar(
+          title: Center(child: Text("Cần Thơ")),
         ),
-      ),
-    );
+        body: ListView(
+          children: [...data.map((record) {
+            return _data(record);
+          })],
+        ));
+  }
+
+  Widget _data(temp) {
+    return Card(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Text(temp['name'].toString()),
+            Text(temp['location'].toString()),
+            if (temp['child'] != null)
+              ...temp['child'].map((record) => _data(record))
+          ],
+        ));
   }
 }
