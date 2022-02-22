@@ -1,28 +1,28 @@
-//import 'package:farm/components/call_API.dart';
-//import 'package:farm/components/customdata.dart';
 import 'package:farm/components/login.dart';
 import 'package:farm/components/navdrawer.dart';
-//import 'package:farm/components/seatek.dart';
 import 'package:farm/components/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:farm/components/getData.dart';
 import 'package:farm/components/call_API_local.dart';
+import 'package:farm/weather/show_weather.dart';
+import 'package:farm/components/call_API.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-        initialRoute: '/navdrawer',
+        initialRoute: '/show_weather',
         debugShowCheckedModeBanner: false,
         routes: {
+          '/show_weather': (context) => ShowWeather(),
           '/call_api_local': (context) => CallAPILocal(),
+          '/call_api': (context) => CallAPI(),
           '/login': (context) => Login(),
           '/signup': (context) => SignUp(),
           '/navdrawer': (context) => NavDrawer(),
           '/getdata': (context) => GetData(),
-
         }),
   );
 }
