@@ -17,7 +17,7 @@ class ShowWeather extends StatefulWidget {
 
 class _ShowWeatherState extends State<ShowWeather> {
   WeatherApi client = WeatherApi();
-  var data, temp, hum, temp_min, temp_max, wind_speed, day;
+  var data;
 
   void initState() {
     super.initState();
@@ -52,9 +52,6 @@ class _ShowWeatherState extends State<ShowWeather> {
   Widget build(BuildContext context) {
     //print(new DateTime.fromMicrosecondsSinceEpoch(data['dt'] * 1000000));
     return Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("Dự báo thời Tiết")),
-        ),
         body: data == null
             ? Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
@@ -62,199 +59,217 @@ class _ShowWeatherState extends State<ShowWeather> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: Column(
                     children: [
-                      ...data['daily'].map((record) {
-                        return Container(
-                          margin: EdgeInsets.all(7),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.amber[50],
-                            boxShadow: [
-                              BoxShadow(color: Colors.green, spreadRadius: 3),
-                            ],
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: Center(
+                          child: Text(
+                            "Dự báo thời tiết",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueAccent,
+                                fontSize: 30),
                           ),
-                          child: Column(
-                            children: [
-                              Container(
-                                margin:EdgeInsets.fromLTRB(1, 1, 1, 10),
-                                  padding: EdgeInsets.all(10),
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.deepPurple[700],
-
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "${DateFormat('dd-MM-yyyy').format(new DateTime.fromMicrosecondsSinceEpoch(record['dt'] * 1000000))}",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20),
-                                    ),
-                                  )),
-                              Center(
-                                child: Icon(
-                                  Icons.wb_sunny_rounded,
-                                  color: Colors.orange,
-                                  size: 60,
-                                ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          ...data['daily'].map((record) {
+                            return Container(
+                              margin: EdgeInsets.all(7),
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.amber[50],
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.green, spreadRadius: 3),
+                                ],
                               ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Center(
-                                  child: Text(
-                                "${record['temp']['day']} °C",
-                                style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              )),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Center(
-                                  child: Text(
-                                "${record['weather'][0]['description']}",
-                                style: TextStyle(
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
-                              )),
-                              Divider(),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Center(
-                                child: Text(
-                                  "Thông tin bổ sung",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.grey),
-                                ),
-                              ),
-                              Divider(),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              child: Column(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Container(
+                                      margin: EdgeInsets.fromLTRB(1, 1, 1, 10),
+                                      padding: EdgeInsets.all(10),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.deepPurple[700],
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "${DateFormat('dd-MM-yyyy').format(new DateTime.fromMicrosecondsSinceEpoch(record['dt'] * 1000000))}",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                      )),
+                                  Center(
+                                    child: Icon(
+                                      Icons.wb_sunny_rounded,
+                                      color: Colors.orange,
+                                      size: 60,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Center(
+                                      child: Text(
+                                    "${record['temp']['day']} °C",
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Center(
+                                      child: Text(
+                                    "${record['weather'][0]['description']}",
+                                    style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blueGrey),
+                                  )),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Thông tin bổ sung",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.grey),
+                                    ),
+                                  ),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Column(
+                                      Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            "T_min",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "T_min",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "T_max",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                            ],
                                           ),
-                                          SizedBox(
-                                            height: 10,
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${record['temp']['min']} °C",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "${record['temp']['max']} °C",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            "T_max",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Tốc độ gió",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "Độ ẩm",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${record['wind_speed']} km/h",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "${record['humidity']}%",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.blueGrey),
+                                              ),
+                                            ],
                                           ),
                                         ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${record['temp']['min']} °C",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "${record['temp']['max']} °C",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Tốc độ gió",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "Độ ẩm",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${record['wind_speed']} km/h",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "${record['humidity']}%",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                                color: Colors.blueGrey),
-                                          ),
-                                        ],
-                                      ),
+                                      )
                                     ],
                                   )
                                 ],
-                              )
-                            ],
-                          ),
-                        );
-                      })
+                              ),
+                            );
+                          })
+                        ],
+                      ),
                     ],
                   ),
                 ),

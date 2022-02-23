@@ -5,6 +5,7 @@ import 'package:farm/components/farm_nt.dart';
 import 'package:farm/components/farn_ct.dart';
 import 'package:farm/components/infoPLC.dart';
 import 'package:farm/components/seatek.dart';
+import 'package:farm/weather/show_weather.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
@@ -19,9 +20,8 @@ class _NavDrawerState extends State<NavDrawer> {
 
   final AuthenticationServices _auth = AuthenticationServices();
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
+    ShowWeather(),
     InfoPLC(),
     Seatek(),
   ];
@@ -45,8 +45,12 @@ class _NavDrawerState extends State<NavDrawer> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.wb_sunny_rounded),
+            label: 'Thời tiết',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article_outlined),
+            label: 'Thông tin',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.aod_outlined),

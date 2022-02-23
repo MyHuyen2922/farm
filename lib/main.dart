@@ -13,7 +13,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-        initialRoute: '/show_weather',
+        initialRoute: '/navdrawer',
         debugShowCheckedModeBanner: false,
         routes: {
           '/show_weather': (context) => ShowWeather(),
