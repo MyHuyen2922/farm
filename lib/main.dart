@@ -1,6 +1,8 @@
+import 'package:farm/components/infoPLC.dart';
 import 'package:farm/components/login.dart';
 import 'package:farm/components/navdrawer.dart';
 import 'package:farm/components/signup.dart';
+import 'package:farm/components/test.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:farm/components/getData.dart';
@@ -13,7 +15,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-        initialRoute: '/navdrawer',
+        initialRoute: '/test',
         debugShowCheckedModeBanner: false,
         routes: {
           '/show_weather': (context) => ShowWeather(),
@@ -23,6 +25,8 @@ void main() async {
           '/signup': (context) => SignUp(),
           '/navdrawer': (context) => NavDrawer(),
           '/getdata': (context) => GetData(),
+          '/infPLC': (context) => InfoPLC(),
+          '/test': (context) => DeleteWidget(),
         }),
   );
 }

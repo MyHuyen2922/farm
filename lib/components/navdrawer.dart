@@ -35,6 +35,7 @@ class _NavDrawerState extends State<NavDrawer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
       appBar: AppBar(
         title: const Text('Khu Vườn Seatek'),
         backgroundColor: Colors.indigo[300],
@@ -99,7 +100,12 @@ class _NavDrawerState extends State<NavDrawer> {
                 onClick: () {},
                 content: Text("Farm Cần Thơ"),
                 subMenuItems: [
-                  MLSubmenu(submenuContent: Text("PLC 1"), onClick: () {}),
+                  MLSubmenu(
+                      submenuContent: Text("PLC 1"),
+                      onClick: () {
+                        Navigator.pop(context);
+                        //Scaffold.of(context).openDrawer();
+                      }),
                   MLSubmenu(submenuContent: Text("PLC 2"), onClick: () {}),
                 ]),
             MLMenuItem(
