@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:multilevel_drawer/multilevel_drawer.dart';
+
 class InfoPLC extends StatefulWidget {
   @override
   State<InfoPLC> createState() => _InfoPLCState();
@@ -43,22 +45,44 @@ class _InfoPLCState extends State<InfoPLC> {
           title: Center(child: Text("Cần Thơ")),
         ),
         body: ListView(
-          children: [...data.map((record) {
-            return _data(record);
-          })],
+          children: [
+            ...data.map((record) {
+              return _data(record);
+            })
+          ],
+        ),
+        drawer: Container(
+          height: MediaQuery.of(context).size.height,
+          width: 300,
+          child: ListView(
+            children: [
+              ...data.map((record) {
+                return _data(record);
+              })
+            ],
+          ),
         ));
   }
 
   Widget _data(temp) {
     return Card(
         child: ListView(
-          shrinkWrap: true,
+      shrinkWrap: true,
+      children: [
+        ExpansionTile(
+          /*title:  GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/login');
+            },
+            child: Text(temp['name'].toString()),
+          ),*/
+          title: Text(temp['name'].toString()),
           children: [
-            Text(temp['name'].toString()),
-            Text(temp['location'].toString()),
             if (temp['child'] != null)
               ...temp['child'].map((record) => _data(record))
           ],
-        ));
+        )
+      ],
+    ));
   }
 }

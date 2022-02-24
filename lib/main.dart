@@ -15,7 +15,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-        initialRoute: '/test',
+        initialRoute: '/infPLC',
         debugShowCheckedModeBanner: false,
         routes: {
           '/show_weather': (context) => ShowWeather(),
