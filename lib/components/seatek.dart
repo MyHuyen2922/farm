@@ -13,7 +13,7 @@ class _SeatekState extends State<Seatek> {
   Future getUserData() async {
     //var response = await http
     http.post(
-        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
@@ -29,7 +29,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOff() async {
     http.post(
-        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
@@ -40,7 +40,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOnFan() async {
     http.post(
-        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://113.170.48.128:8080//ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -51,7 +51,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOffFan() async {
     http.post(
-        Uri.parse('http://730e-113-163-184-116.ngrok.io/ajax/remote_device'),
+        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -68,90 +68,165 @@ class _SeatekState extends State<Seatek> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           //height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-                "assets/images/pngtree-frame-flower-fresh-elegant-image_46797.jpg"),
-            fit: BoxFit.cover,
-          )),
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 10),
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/bom-hoa-chat-mini-2-removebg-preview.png",
-                      width: 240,
-                      height: 200,
-                    ),
-                    ButtonBar(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.pinkAccent,
-                            primary: Colors.white,
-                            //minimumSize: Size.fromHeight(50),
-                            textStyle: const TextStyle(fontSize: 20),
+                   Container(
+                     margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                     padding: EdgeInsets.all(10),
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(10),
+                       color: Colors.white,
+                       boxShadow: [
+                         BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                       ],
+                     ),
+                     child: Row(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       children: [
+                         Column(
+                           children: [
+                             Container(
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(10),
+                                 color: Colors.white,
+                                 boxShadow: [
+                                   BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                                 ],
+                               ),
+                               alignment: Alignment.topLeft,
+                               child: Text("Thông tin máy bơm"),
+                             )
+                           ],
+                         ),
+                         Column(
+                           children: [
+                             Image.asset(
+                               "assets/images/bom-hoa-chat-mini-2-removebg-preview.png",
+                               width: 240,
+                               height: 200,
+                             ),
+                             ButtonBar(
+                               mainAxisSize: MainAxisSize.min,
+                               children: <Widget>[
+                                 TextButton(
+                                   style: TextButton.styleFrom(
+                                     backgroundColor: Colors.pinkAccent,
+                                     primary: Colors.white,
+                                     //minimumSize: Size.fromHeight(50),
+                                     textStyle: const TextStyle(fontSize: 20),
+                                   ),
+                                   onPressed: () {
+                                     getUserData();
+                                   },
+                                   child: const Text('On'),
+                                 ),
+                                 TextButton(
+                                   style: TextButton.styleFrom(
+                                     backgroundColor: Colors.pinkAccent,
+                                     primary: Colors.white,
+                                     //minimumSize: Size.fromHeight(50),
+                                     textStyle: const TextStyle(fontSize: 20),
+                                   ),
+                                   onPressed: () {
+                                     getOff();
+                                   },
+                                   child: const Text('Off'),
+                                 ),
+                               ],
+                             ),
+                           ],
+                         )
+                       ],
+                     ),
+                   ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                        ],
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                                  ],
+                                ),
+                                alignment: Alignment.topLeft,
+                                child: Text("Thông tin quạt"),
+                              )
+                            ],
                           ),
-                          onPressed: () {
-                            getUserData();
-                          },
-                          child: const Text('On'),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.pinkAccent,
-                            primary: Colors.white,
-                            //minimumSize: Size.fromHeight(50),
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            getOff();
-                          },
-                          child: const Text('Off'),
-                        ),
-                      ],
-                    ),
-                    Image.asset(
-                      "assets/images/1.png",
-                      width: 240,
-                      height: 200,
-                    ),
-                    ButtonBar(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            primary: Colors.white,
-                            //minimumSize: Size.fromHeight(50),
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            getOnFan();
-                          },
-                          child: const Text('On'),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            primary: Colors.white,
-                            //minimumSize: Size.fromHeight(50),
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            getOffFan();
-                          },
-                          child: const Text('Off'),
-                        ),
-                      ],
+                          Column(
+                            children: [
+                              Image.asset(
+                                "assets/images/1.png",
+                                width: 240,
+                                height: 200,
+                              ),
+                              ButtonBar(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.blue,
+                                      primary: Colors.white,
+                                      //minimumSize: Size.fromHeight(50),
+                                      textStyle: const TextStyle(fontSize: 20),
+                                    ),
+                                    onPressed: () {
+                                      getOnFan();
+                                    },
+                                    child: const Text('On'),
+                                  ),
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.blue,
+                                      primary: Colors.white,
+                                      //minimumSize: Size.fromHeight(50),
+                                      textStyle: const TextStyle(fontSize: 20),
+                                    ),
+                                    onPressed: () {
+                                      getOffFan();
+                                    },
+                                    child: const Text('Off'),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
+
             ],
           ),
         ),

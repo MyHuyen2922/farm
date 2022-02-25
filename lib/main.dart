@@ -1,4 +1,4 @@
-import 'package:farm/components/infoPLC.dart';
+import 'package:farm/components/real_para.dart';
 import 'package:farm/components/login.dart';
 import 'package:farm/components/navdrawer.dart';
 import 'package:farm/components/signup.dart';
@@ -15,7 +15,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-        initialRoute: '/infPLC',
+        initialRoute: '/navdrawer',
         debugShowCheckedModeBanner: false,
         routes: {
           '/show_weather': (context) => ShowWeather(),
@@ -25,7 +25,7 @@ void main() async {
           '/signup': (context) => SignUp(),
           '/navdrawer': (context) => NavDrawer(),
           '/getdata': (context) => GetData(),
-          '/infPLC': (context) => InfoPLC(),
+          '/real_para': (context) => RealParameters(),
           '/test': (context) => DeleteWidget(),
         }),
   );
