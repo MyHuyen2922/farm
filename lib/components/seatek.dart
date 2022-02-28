@@ -52,7 +52,7 @@ class _SeatekState extends State<Seatek> {
           "data_type": 'bool'
         });
   }
-  var number = 1;
+  var number = 0;
 
   void initState() {
     super.initState();
@@ -65,8 +65,8 @@ class _SeatekState extends State<Seatek> {
           "ip_plc": '10.0.54.99',
           "id_plc": '9',
         });
-    print(res);
-    
+    print(jsonEncode(res));
+
 
   }
   @override
