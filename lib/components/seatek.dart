@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Seatek extends StatefulWidget {
   @override
@@ -11,25 +10,19 @@ class Seatek extends StatefulWidget {
 
 class _SeatekState extends State<Seatek> {
   Future getUserData() async {
-    //var response = await http
     http.post(
-        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
+        Uri.parse('http://14.252.65.144:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
           "bit": '4',
           "data_type": 'bool'
         });
-    //var jsonData = json.decode(response.body);
-    // ignore: unused_local_variabl
-
-    //print(jsonData);
-    //return jsonData;
   }
 
   Future getOff() async {
     http.post(
-        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
+        Uri.parse('http://14.252.65.144:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '63',
@@ -40,7 +33,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOnFan() async {
     http.post(
-        Uri.parse('http://113.170.48.128:8080//ajax/remote_device'),
+        Uri.parse('http://14.252.65.144:8080//ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -51,7 +44,7 @@ class _SeatekState extends State<Seatek> {
 
   Future getOffFan() async {
     http.post(
-        Uri.parse('http://113.170.48.128:8080/ajax/remote_device'),
+        Uri.parse('http://14.252.65.144:8080/ajax/remote_device'),
         body: {
           "id_device": '9',
           "start_byte": '12',
@@ -59,7 +52,23 @@ class _SeatekState extends State<Seatek> {
           "data_type": 'bool'
         });
   }
+  var number = 1;
 
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) => getData());
+  }
+  void getData() async {
+    var res = http.post(
+        Uri.parse('http://14.252.65.144:8080/ajax/get_attr_value_plc'),
+        body: {
+          "ip_plc": '10.0.54.99',
+          "id_plc": '9',
+        });
+    print(res);
+    
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,28 +98,54 @@ class _SeatekState extends State<Seatek> {
                        crossAxisAlignment: CrossAxisAlignment.start,
                        mainAxisAlignment: MainAxisAlignment.end,
                        children: [
-                         Column(
-                           children: [
-                             Container(
-                               decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.circular(10),
-                                 color: Colors.white,
-                                 boxShadow: [
-                                   BoxShadow(color: Colors.indigo, spreadRadius: 1),
-                                 ],
-                               ),
-                               alignment: Alignment.topLeft,
-                               child: Text("Thông tin máy bơm"),
-                             )
-                           ],
+                         Flexible(
+                           child:   Container(
+                             padding: EdgeInsets.all(5),
+                             width: MediaQuery.of(context).size.width/2,
+                             height: MediaQuery.of(context).size.height/4,
+                             decoration: BoxDecoration(
+                               borderRadius: BorderRadius.circular(10),
+                               color: Colors.white,
+                               boxShadow: [
+                                 BoxShadow(color: Colors.red, spreadRadius: 1),
+                               ],
+                             ),
+                             child:  Column(
+                               children: [
+                                 Container(
+                                   padding: EdgeInsets.all(5),
+                                   decoration: BoxDecoration(
+                                     borderRadius: BorderRadius.circular(10),
+                                     color: Colors.white,
+                                     boxShadow: [
+                                       BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                                     ],
+                                   ),
+                                   child: Text("Thông tin máy bơm"),
+                                 )
+                               ],
+                             ),
+                           ),
                          ),
                          Column(
                            children: [
                              Image.asset(
                                "assets/images/bom-hoa-chat-mini-2-removebg-preview.png",
-                               width: 240,
-                               height: 200,
+                               width: 200,
+                               height: 100,
                              ),
+                              if(number == 0)
+                                Icon(
+                                  Icons.circle,
+                                  color: Colors.green,
+                                  size: 40.0,
+                                )else
+                                Icon(
+                                  Icons.circle,
+                                  color: Colors.red,
+                                  size: 40.0,
+                                )
+                              ,
                              ButtonBar(
                                mainAxisSize: MainAxisSize.min,
                                children: <Widget>[
@@ -167,28 +202,53 @@ class _SeatekState extends State<Seatek> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(color: Colors.indigo, spreadRadius: 1),
-                                  ],
-                                ),
-                                alignment: Alignment.topLeft,
-                                child: Text("Thông tin quạt"),
-                              )
-                            ],
-                          ),
+                       Flexible(
+                         child:   Container(
+                           padding: EdgeInsets.all(5),
+                           width: MediaQuery.of(context).size.width/2,
+                           height: MediaQuery.of(context).size.height/4,
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10),
+                             color: Colors.white,
+                             boxShadow: [
+                               BoxShadow(color: Colors.red, spreadRadius: 1),
+                             ],
+                           ),
+                           child:  Column(
+                             children: [
+                               Container(
+                                 padding: EdgeInsets.all(5),
+                                 decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(10),
+                                   color: Colors.white,
+                                   boxShadow: [
+                                     BoxShadow(color: Colors.indigo, spreadRadius: 1),
+                                   ],
+                                 ),
+                                 child: Text("Thông tin quạt"),
+                               )
+                             ],
+                           ),
+                         ),
+                       ),
                           Column(
                             children: [
                               Image.asset(
                                 "assets/images/1.png",
-                                width: 240,
-                                height: 200,
+                                width: 200,
+                                height: 100,
                               ),
+                              if(number == 0)
+                                Icon(
+                                  Icons.circle,
+                                  color: Colors.green,
+                                  size: 40.0,
+                                )else
+                                Icon(
+                                  Icons.circle,
+                                  color: Colors.red,
+                                  size: 40.0,
+                                ),
                               ButtonBar(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
