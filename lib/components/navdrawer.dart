@@ -122,11 +122,22 @@ class _NavDrawerState extends State<NavDrawer> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text("SeaTek", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.blueGrey),),
+                      Text(
+                        "SeaTek",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blueGrey),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text("seatek@gmail.com",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey, fontStyle: FontStyle.italic                                                                                                                                                                                                                                                                                                                                   ),),
+                      Text(
+                        "seatek@gmail.com",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey,
+                            fontStyle: FontStyle.italic),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -145,21 +156,39 @@ class _NavDrawerState extends State<NavDrawer> {
   Widget _data(temp) {
     return Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.indigoAccent, width: 1),
+          side: BorderSide(color: Colors.blueGrey.shade50, width: 1),
           borderRadius: BorderRadius.circular(15.0),
         ),
-        child: ExpansionTile(
-          /*title:  GestureDetector(
+        child: temp['child'] == null
+            ? ExpansionTile(
+                trailing: const SizedBox(),
+                /*title:  GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, '/login');
             },
             child: Text(temp['name'].toString()),
           ),*/
-          title: Text(temp['name'].toString()),
-          children: [
-            if (temp['child'] != null)
-              ...temp['child'].map((record) => _data(record))
-          ],
-        ));
+                title: Text(temp['name'].toString()),
+                children: [
+                  if (temp['child'] != null)
+                    ...temp['child'].map((record) => _data(record)),
+                ],
+              )
+            : (ExpansionTile(
+                /*title:  GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/login');
+            },
+            child: Text(temp['name'].toString()),
+          ),*/
+                title: Text(temp['name'].toString()),
+                children: [
+                  if (temp['child'] != null)
+                    ...temp['child'].map((record) => Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: _data(record),
+                        )),
+                ],
+              )));
   }
 }
